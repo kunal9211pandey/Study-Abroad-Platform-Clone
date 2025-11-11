@@ -1,4 +1,4 @@
-# ApplyBoard Clone - Study Abroad Platform
+# Apply Board Clone - Study Abroad Platform
 
 ## Overview
 This is a comprehensive Flask-based web application that replicates ApplyBoard's core functionality. The platform helps international students discover, apply to, and manage applications for universities and programs worldwide. It features complete user authentication, payment processing, admin management, and real university data integration.
@@ -30,9 +30,9 @@ cd ApplyClone
 2. (Optional) Create and activate a virtual environment:
 
 python -m venv venv
-# Windows
+### Windows
 .\venv\Scripts\activate
-# macOS/Linux
+### macOS/Linux
 source venv/bin/activate
 
 3. Install dependencies:
@@ -43,6 +43,7 @@ pip install -r requirements.txt
 
 # Windows PowerShell
 $env:DATABASE_URL="sqlite:///mydatabase.db"
+
 $env:SESSION_SECRET="your-secret-key"
 
 5. Running the App
