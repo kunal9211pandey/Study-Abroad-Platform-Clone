@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - ApplyBoard{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4">Welcome back, {{ current_user.first_name }}!</h1>
+        </div>
+    </div>
+    
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4>{{ applications|length }}</h4>
+                            <p class="mb-0">Applications</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-file-alt fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4>{{ applications|selectattr('status.value', 'equalto', 'accepted')|list|length }}</h4>
+                            <p class="mb-0">Accepted</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-check-circle fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4>{{ applications|selectattr('status.value', 'equalto', 'under_review')|list|length }}</h4>
+                            <p class="mb-0">Under Review</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-clock fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4>${{ payments|selectattr('status.value', 'equalto', 'completed')|map(attribute='amount')|sum|round(2) }}</h4>
+                            <p class="mb-0">Total Paid</p>
+                        </div>
+                        <div>
+                            <i class="fas fa-dollar-sign fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Applications -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">My Applications</h5>
+                    <a href="{{ url_for('search') }}" class="btn btn-primary btn-sm">Apply to Programs</a>
+                </div>
+                <div class="card-body">
+                    {% if applications %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Program</th>
+                                        <th>Institution</th>
+                                        <th>Status</th>
+                                        <th>Applied Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for app in applications %}
+                                    <tr>
+                                        <td>
+                                            <strong>{{ app.program.name }}</strong><br>
+                                            <small class="text-muted">{{ app.program.degree_type }}</small>
+                                        </td>
+                                        <td>{{ app.institution.name }}</td>
+                                        <td>
+                                            {% set status_class = {
+                                                'draft': 'secondary',
+                                                'submitted': 'info',
+                                                'under_review': 'warning',
+                                                'accepted': 'success',
+                                                'rejected': 'danger',
+                                                'waitlisted': 'warning'
+                                            } %}
+                                            <span class="badge bg-{{ status_class.get(app.status.value, 'secondary') }}">
+                                                {{ app.status.value.replace('_', ' ').title() }}
+                                            </span>
+                                        </td>
+                                        <td>{{ app.created_at.strftime('%Y-%m-%d') }}</td>
+                                        <td>
+                                            <a href="{{ url_for('view_application', application_id=app.id) }}" class="btn btn-sm btn-outline-primary">View</a>
+                                            {% if app.status.value == 'draft' %}
+                                            <a href="{{ url_for('apply_to_program', program_id=app.program_id) }}" class="btn btn-sm btn-primary">Edit</a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-file-alt fa-3x text-muted mb-3"></i>
+                            <h5>No Applications Yet</h5>
+                            <p class="text-muted">Start your journey by applying to your dream programs.</p>
+                            <a href="{{ url_for('search') }}" class="btn btn-primary">Find Programs</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recent Activity -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Recent Payments</h5>
+                </div>
+                <div class="card-body">
+                    {% if payments %}
+                        {% for payment in payments[:5] %}
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <strong>${{ payment.amount }}</strong><br>
+                                <small class="text-muted">{{ payment.description }}</small>
+                            </div>
+                            <div>
+                                {% set payment_class = {
+                                    'pending': 'warning',
+                                    'completed': 'success',
+                                    'failed': 'danger',
+                                    'refunded': 'info'
+                                } %}
+                                <span class="badge bg-{{ payment_class.get(payment.status.value, 'secondary') }}">
+                                    {{ payment.status.value.title() }}
+                                </span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <a href="{{ url_for('payments.payment_history') }}" class="btn btn-sm btn-outline-primary w-100">View All Payments</a>
+                    {% else %}
+                        <div class="text-center">
+                            <i class="fas fa-credit-card fa-2x text-muted mb-2"></i>
+                            <p class="text-muted">No payments yet</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Profile Summary -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Profile Summary</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label class="text-muted">Email</label>
+                        <div>{{ current_user.email }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-muted">Country</label>
+                        <div>{{ current_user.country or 'Not specified' }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-muted">Education Level</label>
+                        <div>{{ current_user.education_level or 'Not specified' }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-muted">Field of Interest</label>
+                        <div>{{ current_user.field_of_interest or 'Not specified' }}</div>
+                    </div>
+                    <a href="{{ url_for('auth.edit_profile') }}" class="btn btn-outline-primary btn-sm w-100">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

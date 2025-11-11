@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% block title %}Register - ApplyBoard{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="text-center mb-4">Create Your Account</h2>
+                    
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="first_name" class="form-label">First Name *</label>
+                                <input type="text" class="form-control" id="first_name" name="first_name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="last_name" class="form-label">Last Name *</label>
+                                <input type="text" class="form-control" id="last_name" name="last_name" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="password" class="form-label">Password *</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                                <small class="text-muted">Minimum 8 characters</small>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="confirm_password" class="form-label">Confirm Password *</label>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Country *</label>
+                            <select class="form-select" id="country" name="country" required>
+                                <option value="">Select your country</option>
+                                <option value="IN">India</option>
+                                <option value="CN">China</option>
+                                <option value="NG">Nigeria</option>
+                                <option value="BD">Bangladesh</option>
+                                <option value="PK">Pakistan</option>
+                                <option value="BR">Brazil</option>
+                                <option value="MX">Mexico</option>
+                                <option value="VN">Vietnam</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="education_level" class="form-label">Current Education Level</label>
+                            <select class="form-select" id="education_level" name="education_level">
+                                <option value="">Select education level</option>
+                                <option value="high_school">High School</option>
+                                <option value="bachelor">Bachelor's Degree</option>
+                                <option value="master">Master's Degree</option>
+                                <option value="phd">PhD</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="field_of_interest" class="form-label">Field of Interest</label>
+                            <select class="form-select" id="field_of_interest" name="field_of_interest">
+                                <option value="">Select field of interest</option>
+                                <option value="Computer Science">Computer Science</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Business Administration">Business Administration</option>
+                                <option value="Medicine">Medicine</option>
+                                <option value="Liberal Arts">Liberal Arts</option>
+                                <option value="Data Science">Data Science</option>
+                                <option value="Economics">Economics</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Preferred Study Destinations</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="dest_ca" name="destinations" value="CA">
+                                        <label class="form-check-label" for="dest_ca">Canada</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="dest_us" name="destinations" value="US">
+                                        <label class="form-check-label" for="dest_us">United States</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="dest_gb" name="destinations" value="GB">
+                                        <label class="form-check-label" for="dest_gb">United Kingdom</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="dest_au" name="destinations" value="AU">
+                                        <label class="form-check-label" for="dest_au">Australia</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="dest_ie" name="destinations" value="IE">
+                                        <label class="form-check-label" for="dest_ie">Ireland</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="dest_de" name="destinations" value="DE">
+                                        <label class="form-check-label" for="dest_de">Germany</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100">Create Account</button>
+                    </form>
+                    
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="{{ url_for('auth.login') }}">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

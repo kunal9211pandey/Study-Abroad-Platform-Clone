@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+
+{% block title %}Search Programs - ApplyBoard{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-5">
+    <!-- Search Header -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="text-center mb-4">
+                <h1 class="display-5 fw-bold text-primary">Find Your Perfect Study Program</h1>
+                <p class="lead text-muted">Explore thousands of programs from universities worldwide</p>
+            </div>
+            
+            <!-- Search Form -->
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                    <form method="GET" action="{{ url_for('search') }}">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Country</label>
+                                <select name="country" class="form-select">
+                                    <option value="">All Countries</option>
+                                    <option value="au" {% if selected_country == 'au' %}selected{% endif %}>🇦🇺 Australia</option>
+                                    <option value="ca" {% if selected_country == 'ca' %}selected{% endif %}>🇨🇦 Canada</option>
+                                    <option value="de" {% if selected_country == 'de' %}selected{% endif %}>🇩🇪 Germany</option>
+                                    <option value="ie" {% if selected_country == 'ie' %}selected{% endif %}>🇮🇪 Ireland</option>
+                                    <option value="gb" {% if selected_country == 'gb' %}selected{% endif %}>🇬🇧 United Kingdom</option>
+                                    <option value="us" {% if selected_country == 'us' %}selected{% endif %}>🇺🇸 United States</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Field of Study</label>
+                                <select name="field" class="form-select">
+                                    <option value="">All Fields</option>
+                                    <option value="Business" {% if selected_field == 'Business' %}selected{% endif %}>Business</option>
+                                    <option value="Technology" {% if selected_field == 'Technology' %}selected{% endif %}>Technology</option>
+                                    <option value="Engineering" {% if selected_field == 'Engineering' %}selected{% endif %}>Engineering</option>
+                                    <option value="Science" {% if selected_field == 'Science' %}selected{% endif %}>Science</option>
+                                    <option value="Arts" {% if selected_field == 'Arts' %}selected{% endif %}>Arts</option>
+                                    <option value="Health" {% if selected_field == 'Health' %}selected{% endif %}>Health Sciences</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold">Search Keywords</label>
+                                <input type="text" name="q" class="form-control" placeholder="University name, location..." 
+                                       value="{{ search_query }}">
+                            </div>
+                            
+                            <div class="col-md-2">
+                                <label class="form-label">&nbsp;</label>
+                                <button type="submit" class="btn btn-primary w-100 d-block">
+                                    <i class="fas fa-search me-1"></i>Search
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div class="row">
+        <!-- Sidebar Filters -->
+        <div class="col-lg-3 mb-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h6 class="mb-0"><i class="fas fa-filter me-2"></i>Filter Results</h6>
+                </div>
+                <div class="card-body">
+                    <div class="mb-4">
+                        <h6 class="fw-bold">Quick Stats</h6>
+                        <ul class="list-unstyled">
+                            <li class="d-flex justify-content-between">
+                                <span>Universities</span>
+                                <span class="text-primary fw-bold">{{ universities|length }}</span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <span>Programs</span>
+                                <span class="text-primary fw-bold">{{ programs|length }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h6 class="fw-bold">Popular Destinations</h6>
+                        <div class="d-grid gap-2">
+                            <a href="{{ url_for('search', country='ca') }}" class="btn btn-outline-primary btn-sm">🇨🇦 Canada</a>
+                            <a href="{{ url_for('search', country='us') }}" class="btn btn-outline-primary btn-sm">🇺🇸 United States</a>
+                            <a href="{{ url_for('search', country='gb') }}" class="btn btn-outline-primary btn-sm">🇬🇧 United Kingdom</a>
+                            <a href="{{ url_for('search', country='au') }}" class="btn btn-outline-primary btn-sm">🇦🇺 Australia</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Results -->
+        <div class="col-lg-9">
+            <!-- Results Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="mb-0">
+                    Found {{ universities|length }} universities
+                    {% if selected_country or selected_field or search_query %}
+                        {% if selected_country %}in 
+                            {% if selected_country == 'ca' %}Canada{% endif %}
+                            {% if selected_country == 'us' %}United States{% endif %}
+                            {% if selected_country == 'gb' %}United Kingdom{% endif %}
+                            {% if selected_country == 'au' %}Australia{% endif %}
+                            {% if selected_country == 'ie' %}Ireland{% endif %}
+                            {% if selected_country == 'de' %}Germany{% endif %}
+                        {% endif %}
+                        {% if selected_field %}for {{ selected_field }}{% endif %}
+                        {% if search_query %}matching "{{ search_query }}"{% endif %}
+                    {% endif %}
+                </h5>
+                
+                {% if selected_country or selected_field or search_query %}
+                <a href="{{ url_for('search') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-times me-1"></i>Clear Filters
+                </a>
+                {% endif %}
+            </div>
+
+            <!-- Universities Grid -->
+            {% if universities %}
+            <div class="row g-4 mb-5">
+                {% for university in universities %}
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow-sm university-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-start mb-3">
+                                <img src="{{ university.logo }}" alt="{{ university.name }}" 
+                                     width="80" height="50" class="me-3 rounded">
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title mb-1 fw-bold">{{ university.name }}</h5>
+                                    <p class="text-muted mb-2">
+                                        <i class="fas fa-map-marker-alt me-1"></i>
+                                        {{ university.location }}, {{ university.country }}
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <p class="card-text text-muted mb-3">{{ university.description[:150] }}...</p>
+                            
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{{ university.website }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-external-link-alt me-1"></i>Visit Website
+                                </a>
+                                <button class="btn btn-primary btn-sm" onclick="showPrograms({{ university.id }})">
+                                    <i class="fas fa-book me-1"></i>View Programs
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-search text-muted" style="font-size: 4rem;"></i>
+                <h4 class="text-muted mt-3">No universities found</h4>
+                <p class="text-muted">Try adjusting your search criteria or browse all programs.</p>
+                <a href="{{ url_for('search') }}" class="btn btn-primary">
+                    <i class="fas fa-list me-1"></i>Browse All Programs
+                </a>
+            </div>
+            {% endif %}
+
+            <!-- Programs Section -->
+            {% if programs %}
+            <div class="mb-4">
+                <h4 class="fw-bold text-primary mb-3">
+                    <i class="fas fa-graduation-cap me-2"></i>Available Programs
+                </h4>
+            </div>
+            
+            <div class="row g-4">
+                {% for program in programs[:12] %}
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm program-card">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h6 class="card-title fw-bold mb-1">{{ program.name }}</h6>
+                                    <span class="badge bg-primary">{{ program.degree_type }}</span>
+                                    <span class="badge bg-secondary">{{ program.field }}</span>
+                                </div>
+                                <div class="text-end">
+                                    <div class="fw-bold text-success">{{ program.tuition }}</div>
+                                    <small class="text-muted">{{ program.duration }}</small>
+                                </div>
+                            </div>
+                            
+                            <p class="text-muted mb-3">{{ program.description }}</p>
+                            
+                            <div class="d-flex justify-content-between align-items-center">
+                                <small class="text-muted">
+                                    University ID: {{ program.university_id }}
+                                </small>
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="fas fa-plus me-1"></i>Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            {% if programs|length > 12 %}
+            <div class="text-center mt-4">
+                <button class="btn btn-outline-primary" onclick="loadMorePrograms()">
+                    <i class="fas fa-plus me-1"></i>Load More Programs
+                </button>
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Program Details Modal -->
+<div class="modal fade" id="programModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Program Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="programModalBody">
+                <!-- Content loaded dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Apply Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function showPrograms(universityId) {
+    // This would typically fetch programs for the specific university
+    $('#programModal').modal('show');
+    $('#programModalBody').html('<p>Loading programs for university ID: ' + universityId + '</p>');
+}
+
+function loadMorePrograms() {
+    // This would load more programs via AJAX
+    alert('Loading more programs...');
+}
+</script>
+{% endblock %}

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Arabelle A.",
+    "country": "Philippines",
+    "university": "Western University",
+    "program": "Computer Science",
+    "image": "https://pixabay.com/get/g3ff2054de97b09390731c4c3e6a4a83a0819ab95f7afb1bc9136340924de35a62028d397dd885be54c3ea38b43b9c359cf89d8af9b233ba25b4b3b59ff97292c_1280.jpg",
+    "quote": "I tried applying to institutions and it took months, and months, and months for me to get an answer from a school. But then I stumbled upon ApplyBoard, and it was like an answer from heaven.",
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "name": "Krupali P.",
+    "country": "India",
+    "university": "University of Arizona",
+    "program": "Business Administration",
+    "image": "https://pixabay.com/get/gc8d0987786dac844d069175e1b246174ea8ddaecab18c09ddd38f2d68a4b2fa6f417aac1c7f33f80e62d4b27dad32d754be908b5e15c935ab46038059d5d3c3e_1280.jpg",
+    "quote": "I wanted to make my parents proud, and they are proud. And it was all thanks to ApplyBoard.",
+    "rating": 5
+  },
+  {
+    "id": 3,
+    "name": "Michael R.",
+    "country": "Brazil",
+    "university": "University of Edinburgh",
+    "program": "International Relations",
+    "image": "https://pixabay.com/get/g471454670dad7fc0bcf8f44c542169b25a35ac04b1752294179ce26866a5626852306a1858e5b91934228a4cbb518324d5542b59442d977c19b6dc0a74b4aa62_1280.jpg",
+    "quote": "The platform made it so easy to compare programs and universities. I found my perfect match in just a few weeks!",
+    "rating": 5
+  },
+  {
+    "id": 4,
+    "name": "Sarah K.",
+    "country": "Nigeria",
+    "university": "Griffith University",
+    "program": "Marine Biology",
+    "image": "https://pixabay.com/get/g9cb8255ec8769f55577d4898247d402ce6f9a791aa1a89349826b1821f5c664fdd351c9f73361a24e745d2c459b3a0883b11cfd3d072216a5689cd7779842293_1280.jpg",
+    "quote": "ApplyBoard's support team was amazing throughout my entire application process. They really care about student success.",
+    "rating": 5
+  }
+]

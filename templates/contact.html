@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - ApplyBoard{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-5">
+    <div class="row">
+        <!-- Contact Form -->
+        <div class="col-lg-8 mb-5">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-5">
+                    <div class="mb-4">
+                        <h1 class="display-6 fw-bold text-primary mb-3">Get in Touch</h1>
+                        <p class="lead text-muted">Have questions about studying abroad? Our expert team is here to help you every step of the way.</p>
+                    </div>
+
+                    <form method="POST">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label for="name" class="form-label fw-semibold">
+                                    Full Name <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control form-control-lg" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="email" class="form-label fw-semibold">
+                                    Email Address <span class="text-danger">*</span>
+                                </label>
+                                <input type="email" class="form-control form-control-lg" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label for="subject" class="form-label fw-semibold">
+                                    Subject <span class="text-danger">*</span>
+                                </label>
+                                <select class="form-select form-select-lg" id="subject" name="subject" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="application">Application Support</option>
+                                    <option value="technical">Technical Issues</option>
+                                    <option value="partnership">Partnership Opportunities</option>
+                                    <option value="media">Media Inquiry</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label for="message" class="form-label fw-semibold">
+                                    Message <span class="text-danger">*</span>
+                                </label>
+                                <textarea class="form-control" id="message" name="message" rows="6" 
+                                          placeholder="Tell us how we can help you..." required></textarea>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg py-3 fw-bold">
+                                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="col-lg-4">
+            <!-- Quick Contact -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold text-primary mb-3">
+                        <i class="fas fa-phone me-2"></i>Quick Contact
+                    </h5>
+                    
+                    <div class="mb-3">
+                        <h6 class="fw-semibold">Student Support</h6>
+                        <p class="text-muted mb-1">
+                            <i class="fas fa-phone me-2"></i>+1 (888) 394-9675
+                        </p>
+                        <p class="text-muted">
+                            <i class="fas fa-envelope me-2"></i>students@applyboard.com
+                        </p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6 class="fw-semibold">Partner Institutions</h6>
+                        <p class="text-muted mb-1">
+                            <i class="fas fa-phone me-2"></i>+1 (888) 394-9676
+                        </p>
+                        <p class="text-muted">
+                            <i class="fas fa-envelope me-2"></i>partners@applyboard.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Office Locations -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold text-primary mb-3">
+                        <i class="fas fa-map-marker-alt me-2"></i>Office Locations
+                    </h5>
+                    
+                    <div class="mb-3">
+                        <h6 class="fw-semibold">Canada (HQ)</h6>
+                        <p class="text-muted small">
+                            101 College Street<br>
+                            Toronto, ON M5S 3M2<br>
+                            Canada
+                        </p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6 class="fw-semibold">India</h6>
+                        <p class="text-muted small">
+                            DLF Cyber City<br>
+                            Gurgaon, Haryana<br>
+                            India
+                        </p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h6 class="fw-semibold">Vietnam</h6>
+                        <p class="text-muted small">
+                            District 1<br>
+                            Ho Chi Minh City<br>
+                            Vietnam
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Business Hours -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h5 class="fw-bold text-primary mb-3">
+                        <i class="fas fa-clock me-2"></i>Business Hours
+                    </h5>
+                    
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="text-muted small mb-1">Mon - Fri</p>
+                            <p class="fw-semibold">9:00 AM - 6:00 PM</p>
+                        </div>
+                        <div class="col-6">
+                            <p class="text-muted small mb-1">Saturday</p>
+                            <p class="fw-semibold">10:00 AM - 4:00 PM</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-muted small mb-0">*Times shown in EST</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQ Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-6 fw-bold text-primary">Frequently Asked Questions</h2>
+            <p class="lead text-muted">Quick answers to common questions</p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="contactFAQ">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                How long does it take to get a response?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#contactFAQ">
+                            <div class="accordion-body">
+                                We typically respond to all inquiries within 24-48 hours during business days. For urgent matters, please call our support line for immediate assistance.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                Can I schedule a consultation call?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#contactFAQ">
+                            <div class="accordion-body">
+                                Yes! Our education counselors offer free 30-minute consultation calls. After registering, you'll have access to schedule a call that fits your timezone and availability.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                Do you provide support in multiple languages?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#contactFAQ">
+                            <div class="accordion-body">
+                                Yes, we provide support in English, Hindi, Mandarin, Vietnamese, Arabic, and French. Our multilingual team ensures you get help in your preferred language.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                Is ApplyBoard's service really free for students?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#contactFAQ">
+                            <div class="accordion-body">
+                                Absolutely! All our services for students are completely free. We're funded by our partner institutions, so there are no hidden fees or charges for students using our platform.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Live Chat Widget -->
+<div class="position-fixed bottom-0 end-0 p-4" style="z-index: 1000;">
+    <button class="btn btn-primary btn-lg rounded-circle shadow-lg" id="chatWidget" 
+            data-bs-toggle="tooltip" data-bs-placement="left" title="Start Live Chat">
+        <i class="fas fa-comments"></i>
+    </button>
+</div>
+
+<script>
+// Initialize tooltips
+document.addEventListener('DOMContentLoaded', function() {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+    
+    // Chat widget click handler
+    document.getElementById('chatWidget').addEventListener('click', function() {
+        alert('Live chat feature coming soon! For now, please use the contact form or call us directly.');
+    });
+});
+</script>
+{% endblock %}

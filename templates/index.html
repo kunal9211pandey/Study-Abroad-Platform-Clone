@@ -1,0 +1,541 @@
+{% extends "base.html" %}
+
+{% block title %}ApplyBoard - Study Abroad Made Simple{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-gradient-primary text-white position-relative d-flex align-items-center">
+    <div class="hero-decoration"></div>
+    <div class="container">
+        <div class="row align-items-center min-vh-100 py-5">
+            <div class="col-lg-6 text-center text-lg-start">
+                <div class="animate-fade-in">
+                    <h1 class="display-4 fw-bold mb-4">
+                        Your Future Goes<br>
+                        <span class="text-warning">Beyond Borders</span>
+                    </h1>
+                    <p class="lead mb-4 animate-fade-in-delay">
+                        Explore 1,500+ global universities and colleges. Submit your best possible 
+                        application with a 95% success rate. Unlock your full potential with ApplyBoard!
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 animate-fade-in-delay-2">
+                        <a href="{{ url_for('auth.register') }}" class="btn btn-warning btn-lg px-5">
+                            <i class="fas fa-user-plus me-2"></i>Register Now
+                        </a>
+                        <a href="{{ url_for('search') }}" class="btn btn-outline-light btn-lg px-5">
+                            <i class="fas fa-search me-2"></i>Find Programs
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Search Section -->
+                <div class="card bg-white text-dark shadow-lg mt-5 animate-slide-in">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-globe text-primary fs-4 me-2"></i>
+                            <span class="fw-bold text-muted">18 million searches and counting</span>
+                        </div>
+                        
+                        <form action="{{ url_for('search') }}" method="GET" class="search-form">
+                            <div class="row g-3">
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-primary text-white">
+                                            🇨🇦
+                                        </span>
+                                        <select name="country" class="form-select country-select">
+                                            <option value="">Search by Destination Country</option>
+                                            <option value="au" data-flag="🇦🇺">🇦🇺 Australia</option>
+                                            <option value="ca" data-flag="🇨🇦" selected>🇨🇦 Canada</option>
+                                            <option value="de" data-flag="🇩🇪">🇩🇪 Germany</option>
+                                            <option value="ie" data-flag="🇮🇪">🇮🇪 Ireland</option>
+                                            <option value="gb" data-flag="🇬🇧">🇬🇧 United Kingdom</option>
+                                            <option value="us" data-flag="🇺🇸">🇺🇸 United States</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary w-100 fw-bold">
+                                        <i class="fas fa-search me-2"></i>Search
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 text-center animate-slide-in">
+                <img src="https://pixabay.com/get/g3ff2054de97b09390731c4c3e6a4a83a0819ab95f7afb1bc9136340924de35a62028d397dd885be54c3ea38b43b9c359cf89d8af9b233ba25b4b3b59ff97292c_1280.jpg" 
+                     alt="International students studying" class="img-fluid hero-image rounded-4 shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold text-primary mb-3">
+                The Fastest and Easiest Way<br>
+                to Successfully Study Abroad
+            </h2>
+        </div>
+        
+        <div class="row g-4 text-center">
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="stat-card bg-white rounded-4 shadow-sm h-100">
+                    <div class="stat-icon bg-primary text-white rounded-circle mx-auto">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number text-primary" data-target="1300000">1.3M+</div>
+                    <div class="stat-label text-muted">Students Helped</div>
+                </div>
+            </div>
+            
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="stat-card bg-white rounded-4 shadow-sm h-100">
+                    <div class="stat-icon bg-success text-white rounded-circle mx-auto">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="stat-number text-success" data-target="140000">140K+</div>
+                    <div class="stat-label text-muted">Global Programs</div>
+                </div>
+            </div>
+            
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="stat-card bg-white rounded-4 shadow-sm h-100">
+                    <div class="stat-icon bg-warning text-white rounded-circle mx-auto">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <div class="stat-number text-warning" data-target="1500">1,500+</div>
+                    <div class="stat-label text-muted">Institutions Globally</div>
+                </div>
+            </div>
+            
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="stat-card bg-white rounded-4 shadow-sm h-100">
+                    <div class="stat-icon bg-info text-white rounded-circle mx-auto">
+                        <i class="fas fa-flag"></i>
+                    </div>
+                    <div class="stat-number text-info" data-target="150">150+</div>
+                    <div class="stat-label text-muted">Nationalities</div>
+                </div>
+            </div>
+            
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="stat-card bg-white rounded-4 shadow-sm h-100">
+                    <div class="stat-icon bg-purple text-white rounded-circle mx-auto">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="stat-number text-purple" data-target="10">10+</div>
+                    <div class="stat-label text-muted">Years of Expertise</div>
+                </div>
+            </div>
+            
+            <div class="col-lg-2 col-md-4 col-6">
+                <div class="stat-card bg-white rounded-4 shadow-sm h-100">
+                    <div class="stat-icon bg-danger text-white rounded-circle mx-auto">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="stat-number text-danger" data-target="95">95%</div>
+                    <div class="stat-label text-muted">Success Rate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Program Finder Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4">
+                <span class="badge bg-primary fs-6 mb-3">INTERNATIONAL STUDENTS</span>
+                <h2 class="display-6 fw-bold text-primary mb-4">
+                    Find Your Perfect Study Program
+                </h2>
+                <p class="lead text-muted mb-4">
+                    We've spent a decade perfecting a faster, easier, quality-first international 
+                    study application process. Now, the world is yours to explore in just a few clicks.
+                </p>
+                
+                <div class="row g-3 mb-4">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success me-3 fs-5"></i>
+                            <span>Easily apply to multiple programs</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success me-3 fs-5"></i>
+                            <span>Find perfect program from 140,000+ options</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success me-3 fs-5"></i>
+                            <span>Higher chance of success with AI technology</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success me-3 fs-5"></i>
+                            <span>Quality checks ensure application success</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="{{ url_for('search') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-rocket me-2"></i>Try It Today
+                </a>
+            </div>
+            
+            <div class="col-lg-6 text-center">
+                <img src="https://pixabay.com/get/ged3bbaba143e47f5f0439a42664b45181815b9b744cb939c04417f65880b36ca8e562f83f4afee6589c6fe0f33530c25a9b59da2ab369696a8d50b316c4f9f21_1280.jpg" 
+                     alt="University campus" class="img-fluid rounded-4 shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 360 Solutions Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-center mb-4">
+                <img src="https://pixabay.com/get/gf8f539ce1885a1c07964a54e3a26d49644f102d33fc8c204729dbeb31838c8301291b68aa19f9b6d64f8704eb91b1b5cd3c9582f1b9acb0630b6a189f7683f06_1280.jpg" 
+                     alt="Graduation celebration" class="img-fluid rounded-4 shadow-lg">
+            </div>
+            
+            <div class="col-lg-6">
+                <span class="badge bg-warning fs-6 mb-3">360 SOLUTIONS</span>
+                <h2 class="display-6 fw-bold text-primary mb-4">
+                    Find Every Solution, From Applications to Accommodations
+                </h2>
+                <p class="lead text-muted mb-4">
+                    Access our full 360 Solutions, covering everything from application to arrival. 
+                    Get instant language test vouchers, explore financial services, and invest in 
+                    your future with flexible student loans. It's all here.
+                </p>
+                
+                <a href="{{ url_for('auth.register') }}" class="btn btn-warning btn-lg">
+                    <i class="fas fa-user-plus me-2"></i>Register Now
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-6 fw-bold text-primary mb-3">What Our Students Have to Say</h2>
+            <p class="lead text-muted">Hear from real international students about their experience.</p>
+        </div>
+        
+        {% if testimonials %}
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for testimonial in testimonials %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="card border-0 shadow-lg rounded-4">
+                                <div class="card-body p-5 text-center">
+                                    <i class="fas fa-quote-left text-primary fs-1 mb-4"></i>
+                                    <h4 class="fw-bold text-primary mb-3">{{ testimonial.quote }}</h4>
+                                    <div class="d-flex align-items-center justify-content-center mt-4">
+                                        <img src="{{ testimonial.image }}" alt="{{ testimonial.name }}" 
+                                             class="rounded-circle me-3" width="60" height="60">
+                                        <div class="text-start">
+                                            <h6 class="fw-bold mb-0">{{ testimonial.name }}</h6>
+                                            <small class="text-muted">{{ testimonial.country }} • {{ testimonial.university }}</small>
+                                            <div class="text-warning">
+                                                {% for i in range(testimonial.rating) %}
+                                                <i class="fas fa-star"></i>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Trusted Partners Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-primary fs-6 mb-3">TRUSTED PARTNERS</span>
+            <h2 class="display-6 fw-bold text-primary mb-3">
+                Trusted by 1,500+ Universities, Colleges,<br>
+                and Schools Worldwide
+            </h2>
+        </div>
+        
+        <!-- Country Tabs -->
+        <ul class="nav nav-pills justify-content-center mb-5" id="countryTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="canada-tab" data-bs-toggle="pill" data-bs-target="#canada" 
+                        type="button" role="tab">🇨🇦 Canada</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="us-tab" data-bs-toggle="pill" data-bs-target="#us" 
+                        type="button" role="tab">🇺🇸 United States</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="uk-tab" data-bs-toggle="pill" data-bs-target="#uk" 
+                        type="button" role="tab">🇬🇧 United Kingdom</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="australia-tab" data-bs-toggle="pill" data-bs-target="#australia" 
+                        type="button" role="tab">🇦🇺 Australia</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="ireland-tab" data-bs-toggle="pill" data-bs-target="#ireland" 
+                        type="button" role="tab">🇮🇪 Ireland</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="germany-tab" data-bs-toggle="pill" data-bs-target="#germany" 
+                        type="button" role="tab">🇩🇪 Germany</button>
+            </li>
+        </ul>
+        
+        <!-- Tab Content -->
+        <div class="tab-content" id="countryTabsContent">
+            {% for country_code, universities in featured_universities.items() %}
+            <div class="tab-pane fade {% if country_code == 'ca' %}show active{% endif %}" 
+                 id="{% if country_code == 'ca' %}canada{% elif country_code == 'us' %}us{% elif country_code == 'gb' %}uk{% elif country_code == 'au' %}australia{% elif country_code == 'ie' %}ireland{% elif country_code == 'de' %}germany{% endif %}" 
+                 role="tabpanel">
+                
+                <div class="row g-4">
+                    {% for university in universities %}
+                    <div class="col-lg-4">
+                        <div class="card university-card h-100 border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="{{ university.logo }}" alt="{{ university.name }}" 
+                                         width="60" height="40" class="me-3 rounded">
+                                    <div>
+                                        <h5 class="card-title mb-1 fw-bold">{{ university.name }}</h5>
+                                        <p class="text-muted mb-0 small">
+                                            <i class="fas fa-map-marker-alt me-1"></i>
+                                            {{ university.location }}
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <p class="card-text text-muted">{{ university.description[:120] }}...</p>
+                                
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="{{ university.website }}" target="_blank" 
+                                       class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-external-link-alt me-1"></i>Visit
+                                    </a>
+                                    <a href="{{ url_for('search', country=country_code) }}" 
+                                       class="btn btn-primary btn-sm">
+                                        <i class="fas fa-search me-1"></i>Programs
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="{{ url_for('search', country=country_code) }}" class="btn btn-outline-primary">
+                        <i class="fas fa-plus me-2"></i>
+                        Explore More 
+                        {% if country_code == 'ca' %}Canadian{% elif country_code == 'us' %}US{% elif country_code == 'gb' %}UK{% elif country_code == 'au' %}Australian{% elif country_code == 'ie' %}Irish{% elif country_code == 'de' %}German{% endif %} 
+                        Institutions
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Partner Institution Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <!-- Partner Institutions -->
+            <div class="col-lg-6">
+                <span class="badge bg-warning fs-6 mb-3">PARTNER INSTITUTIONS</span>
+                <h3 class="fw-bold text-primary mb-4">How We Help Partner Institutions</h3>
+                
+                <div class="row g-3 mb-4">
+                    <div class="col-12">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-globe text-primary me-3 fs-5 mt-1"></i>
+                            <span>Diversify your enrollment with students from 150+ nationalities</span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-chart-line text-success me-3 fs-5 mt-1"></i>
+                            <span>Receive higher quality applications and improve conversion by 10%</span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-cogs text-warning me-3 fs-5 mt-1"></i>
+                            <span>Leverage proven technology to save time and reduce manual processing by 40%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#" class="btn btn-primary btn-lg">
+                    <i class="fas fa-handshake me-2"></i>Partner with Us
+                </a>
+            </div>
+            
+            <!-- Recruitment Partners -->
+            <div class="col-lg-6">
+                <span class="badge bg-info fs-6 mb-3">RECRUITMENT PARTNERS</span>
+                <h3 class="fw-bold text-primary mb-4">How We Help Recruitment Partners</h3>
+                
+                <div class="row g-3 mb-4">
+                    <div class="col-12">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-university text-primary me-3 fs-5 mt-1"></i>
+                            <span>Access 140,000+ programs at 1,500+ academic institutions</span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-robot text-success me-3 fs-5 mt-1"></i>
+                            <span>Use AI-powered tools to benefit from ApplyBoard's 95% application success rate</span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex align-items-start">
+                            <i class="fas fa-tools text-warning me-3 fs-5 mt-1"></i>
+                            <span>Support students with extra built-in services, from language tests to student loans</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#" class="btn btn-info btn-lg text-white">
+                    <i class="fas fa-network-wired me-2"></i>Join Our Network
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-5 bg-gradient-primary text-white">
+    <div class="container text-center">
+        <h2 class="display-6 fw-bold mb-4">Choose from 140,000+ Study Programs</h2>
+        <p class="lead mb-4">
+            Pick your programs. Apply all at once. Built-in quality checks give you a ~95% chance of application success.
+        </p>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-warning btn-lg px-5 py-3">
+            <i class="fas fa-rocket me-2"></i>Start Your Journey
+        </a>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="badge bg-primary fs-6 mb-3">FAQ'S</span>
+            <h2 class="display-6 fw-bold text-primary mb-3">Got Questions? We Have Answers</h2>
+            <p class="lead text-muted">
+                Still wondering about studying abroad, and how ApplyBoard can get you there? 
+                Read these answers to our most commonly asked questions.
+            </p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="homeFAQ">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                How can I find my dream program?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#homeFAQ">
+                            <div class="accordion-body">
+                                It couldn't be easier! Register for a free ApplyBoard account, then take a few short minutes 
+                                to tell us about your educational goals and set up your profile. Our platform will suggest 
+                                study programs just for your needs, and you'll have full access to explore the 140,000+ 
+                                programs available through our AI-guided search.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                How do I apply once I've found the right program?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#homeFAQ">
+                            <div class="accordion-body">
+                                With the click of a button! ApplyBoard will guide you through the whole process, from 
+                                application to arrival. It's all online, free, and easy to use. We can even help connect 
+                                you with other services, like loans, language tests, and visas.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                Is ApplyBoard really free for students?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#homeFAQ">
+                            <div class="accordion-body">
+                                Yes! ApplyBoard is completely free for students. We're funded by our partner institutions, 
+                                so there are no hidden fees or charges. You can access our full platform, apply to multiple 
+                                programs, and get expert guidance at no cost.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                What is your success rate?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#homeFAQ">
+                            <div class="accordion-body">
+                                Our platform has a 95% application success rate, thanks to our built-in quality checks and 
+                                AI technology that helps ensure your applications meet institutional requirements before submission.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

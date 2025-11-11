@@ -1,0 +1,267 @@
+{% extends "base.html" %}
+
+{% block title %}Register - ApplyBoard{% endblock %}
+
+{% block content %}
+<div class="container py-5 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Header -->
+            <div class="text-center mb-5">
+                <h1 class="display-5 fw-bold text-primary">Start Your Study Abroad Journey</h1>
+                <p class="lead text-muted">Create your free account and unlock access to 140,000+ programs worldwide</p>
+            </div>
+
+            <!-- Registration Form -->
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-5">
+                    <form method="POST">
+                        <div class="row g-4">
+                            <!-- Personal Information -->
+                            <div class="col-12">
+                                <h4 class="fw-bold text-primary mb-3">
+                                    <i class="fas fa-user me-2"></i>Personal Information
+                                </h4>
+                                <hr>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="first_name" class="form-label fw-semibold">
+                                    First Name <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control form-control-lg" id="first_name" 
+                                       name="first_name" required>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="last_name" class="form-label fw-semibold">
+                                    Last Name <span class="text-danger">*</span>
+                                </label>
+                                <input type="text" class="form-control form-control-lg" id="last_name" 
+                                       name="last_name" required>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="email" class="form-label fw-semibold">
+                                    Email Address <span class="text-danger">*</span>
+                                </label>
+                                <input type="email" class="form-control form-control-lg" id="email" 
+                                       name="email" required>
+                                <div class="form-text">We'll use this to send you important updates</div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label fw-semibold">Phone Number</label>
+                                <input type="tel" class="form-control form-control-lg" id="phone" name="phone">
+                            </div>
+                            
+                            <div class="col-12">
+                                <label for="country" class="form-label fw-semibold">
+                                    Country of Residence <span class="text-danger">*</span>
+                                </label>
+                                <select class="form-select form-select-lg" id="country" name="country" required>
+                                    <option value="">Select your country</option>
+                                    <option value="AF">🇦🇫 Afghanistan</option>
+                                    <option value="BD">🇧🇩 Bangladesh</option>
+                                    <option value="BR">🇧🇷 Brazil</option>
+                                    <option value="CN">🇨🇳 China</option>
+                                    <option value="EG">🇪🇬 Egypt</option>
+                                    <option value="FR">🇫🇷 France</option>
+                                    <option value="DE">🇩🇪 Germany</option>
+                                    <option value="GH">🇬🇭 Ghana</option>
+                                    <option value="IN">🇮🇳 India</option>
+                                    <option value="ID">🇮🇩 Indonesia</option>
+                                    <option value="IR">🇮🇷 Iran</option>
+                                    <option value="IQ">🇮🇶 Iraq</option>
+                                    <option value="JP">🇯🇵 Japan</option>
+                                    <option value="KE">🇰🇪 Kenya</option>
+                                    <option value="KR">🇰🇷 Korea, South</option>
+                                    <option value="MY">🇲🇾 Malaysia</option>
+                                    <option value="MX">🇲🇽 Mexico</option>
+                                    <option value="MA">🇲🇦 Morocco</option>
+                                    <option value="NG">🇳🇬 Nigeria</option>
+                                    <option value="PK">🇵🇰 Pakistan</option>
+                                    <option value="PH">🇵🇭 Philippines</option>
+                                    <option value="RU">🇷🇺 Russia</option>
+                                    <option value="SA">🇸🇦 Saudi Arabia</option>
+                                    <option value="ZA">🇿🇦 South Africa</option>
+                                    <option value="LK">🇱🇰 Sri Lanka</option>
+                                    <option value="TH">🇹🇭 Thailand</option>
+                                    <option value="TR">🇹🇷 Turkey</option>
+                                    <option value="UA">🇺🇦 Ukraine</option>
+                                    <option value="VN">🇻🇳 Vietnam</option>
+                                </select>
+                            </div>
+
+                            <!-- Educational Background -->
+                            <div class="col-12 mt-5">
+                                <h4 class="fw-bold text-primary mb-3">
+                                    <i class="fas fa-graduation-cap me-2"></i>Educational Background
+                                </h4>
+                                <hr>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="education_level" class="form-label fw-semibold">
+                                    Current Education Level <span class="text-danger">*</span>
+                                </label>
+                                <select class="form-select form-select-lg" id="education_level" name="education_level" required>
+                                    <option value="">Select your level</option>
+                                    <option value="high_school">High School</option>
+                                    <option value="diploma">Diploma/Certificate</option>
+                                    <option value="bachelor">Bachelor's Degree</option>
+                                    <option value="master">Master's Degree</option>
+                                    <option value="phd">PhD/Doctorate</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="field_of_interest" class="form-label fw-semibold">Field of Interest</label>
+                                <select class="form-select form-select-lg" id="field_of_interest" name="field_of_interest">
+                                    <option value="">Select a field</option>
+                                    <option value="Business">Business & Management</option>
+                                    <option value="Technology">Computer Science & IT</option>
+                                    <option value="Engineering">Engineering</option>
+                                    <option value="Science">Natural Sciences</option>
+                                    <option value="Health">Health Sciences</option>
+                                    <option value="Arts">Arts & Humanities</option>
+                                    <option value="Social">Social Sciences</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Law">Law</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <!-- Study Preferences -->
+                            <div class="col-12 mt-5">
+                                <h4 class="fw-bold text-primary mb-3">
+                                    <i class="fas fa-globe me-2"></i>Study Preferences
+                                </h4>
+                                <hr>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label class="form-label fw-semibold">Preferred Study Destinations</label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="ca" id="dest_ca" name="destinations">
+                                            <label class="form-check-label" for="dest_ca">🇨🇦 Canada</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="us" id="dest_us" name="destinations">
+                                            <label class="form-check-label" for="dest_us">🇺🇸 United States</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="gb" id="dest_gb" name="destinations">
+                                            <label class="form-check-label" for="dest_gb">🇬🇧 United Kingdom</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="au" id="dest_au" name="destinations">
+                                            <label class="form-check-label" for="dest_au">🇦🇺 Australia</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="ie" id="dest_ie" name="destinations">
+                                            <label class="form-check-label" for="dest_ie">🇮🇪 Ireland</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="de" id="dest_de" name="destinations">
+                                            <label class="form-check-label" for="dest_de">🇩🇪 Germany</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Terms and Submit -->
+                            <div class="col-12 mt-5">
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="checkbox" id="terms" required>
+                                    <label class="form-check-label" for="terms">
+                                        I agree to the <a href="#" class="text-primary">Terms of Service</a> and 
+                                        <a href="#" class="text-primary">Privacy Policy</a> <span class="text-danger">*</span>
+                                    </label>
+                                </div>
+                                
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="checkbox" id="newsletter">
+                                    <label class="form-check-label" for="newsletter">
+                                        Subscribe to our newsletter for study abroad tips and program updates
+                                    </label>
+                                </div>
+                                
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg py-3 fw-bold">
+                                        <i class="fas fa-user-plus me-2"></i>Create My Account
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Additional Info -->
+            <div class="text-center mt-4">
+                <p class="text-muted">
+                    Already have an account? 
+                    <a href="#" class="text-primary fw-semibold">Sign in here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Benefits -->
+<section class="py-5 bg-light mt-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h3 class="fw-bold text-primary">Why Choose ApplyBoard?</h3>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="bg-white p-4 rounded-4 shadow-sm h-100">
+                    <i class="fas fa-rocket text-primary fs-1 mb-3"></i>
+                    <h5 class="fw-bold">95% Success Rate</h5>
+                    <p class="text-muted">Built-in quality checks ensure your applications succeed</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="bg-white p-4 rounded-4 shadow-sm h-100">
+                    <i class="fas fa-university text-success fs-1 mb-3"></i>
+                    <h5 class="fw-bold">1,500+ Institutions</h5>
+                    <p class="text-muted">Access to top universities and colleges worldwide</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="bg-white p-4 rounded-4 shadow-sm h-100">
+                    <i class="fas fa-headset text-warning fs-1 mb-3"></i>
+                    <h5 class="fw-bold">Expert Support</h5>
+                    <p class="text-muted">Dedicated counselors guide you every step of the way</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="bg-white p-4 rounded-4 shadow-sm h-100">
+                    <i class="fas fa-clock text-info fs-1 mb-3"></i>
+                    <h5 class="fw-bold">Fast Processing</h5>
+                    <p class="text-muted">Quick application processing and instant updates</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
